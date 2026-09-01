@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CTR Prediction | LightGBM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="container">
+    <section class="hero">
+        <p class="eyebrow">DATA SCIENCE PROJECT</p>
+        <h1>Click-Through Rate Prediction</h1>
+        <p>Estimate the probability that a user will click an online offer using behavioral and contextual features.</p>
+    </section>
+
+    <section class="card">
+        <form method="post">
+            <div class="grid">
+                <label>User ID<input name="userid" value="100001" required></label>
+                <label>Offer ID<input name="offerid" value="200001" required></label>
+                <label>Country<input name="countrycode" value="de" maxlength="4" required></label>
+                <label>Category<input name="category" type="number" value="10" required></label>
+                <label>Merchant<input name="merchant" type="number" value="20" required></label>
+                <label>Timestamp<input name="timestamp" type="datetime-local" value="2016-06-10T14:30" required></label>
+            </div>
+            <button type="submit">Predict Click Probability</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <span class="label">Prediction</span>
+            <h2>{{ result.label }}</h2>
+            <p>Estimated click probability: <strong>{{ "%.2f"|format(result.probability) }}%</strong></p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+    </section>
+
+    <footer>
+        <span>Built with Python, LightGBM & Flask</span>
+        <span><a href="https://github.com/InfinitePraveen" target="_blank">GitHub</a> · <a href="https://www.linkedin.com/in/infinitepraveen/" target="_blank">LinkedIn</a></span>
+    </footer>
+</main>
+</body>
+</html>
